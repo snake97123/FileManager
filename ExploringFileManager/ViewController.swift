@@ -21,8 +21,10 @@ class ViewController: UIViewController {
         
         let newFolderUrl = documentDirectoryUrl.appendingPathComponent("practice-filemanager")
         
-        do {  try fileManager.createDirectory(at: newFolderUrl, withIntermediateDirectories: true, attributes: nil)
-            print(newFolderUrl)
+        do {
+            let fileUrl = newFolderUrl.appendingPathComponent("logs.txt")
+            fileManager.createFile(atPath: fileUrl.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()]
+            )
         }
         catch {
             print(error.localizedDescription)
