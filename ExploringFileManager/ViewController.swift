@@ -21,11 +21,16 @@ class ViewController: UIViewController {
         
         let newFolderUrl = documentDirectoryUrl.appendingPathComponent("practice-filemanager")
         
-        let fileUrl = newFolderUrl.appendingPathComponent("logs.txt")
+        let fileUrl = documentDirectoryUrl.appendingPathComponent("practice-filemanager")
         print(fileUrl)
-        let data = "Hello World".data(using: .utf8)
-        fileManager.createFile(atPath: fileUrl.path, contents: data, attributes: [FileAttributeKey.creationDate: Date()]
-        )
+        if fileManager.fileExists(atPath: fileUrl.path) {
+            do {
+                try fileManager.removeItem(at: fileUrl)
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 
 
